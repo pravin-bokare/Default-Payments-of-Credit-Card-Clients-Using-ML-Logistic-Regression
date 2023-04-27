@@ -12,11 +12,12 @@ from src.exception import CustomException
 from src.logger import logging
 import os
 from src.utils import save_object
+from from_root import from_root
 
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
+    preprocessor_obj_file_path = os.path.join(from_root(), 'artifacts', 'preprocessor.pkl')
 
 
 class DataTransformation:
@@ -26,41 +27,17 @@ class DataTransformation:
     def get_data_transformation_object(self):
         try:
             logging.info('Data Transformation initiated')
-            # Define which columns should be ordinal-encoded and which should be scaled
-            categorical_cols = ['cut', 'color', 'clarity']
-            numerical_cols = ['carat', 'depth', 'table', 'x', 'y', 'z']
-
-            # Define the custom ranking for each ordinal variable
-            cut_categories = ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal']
-            color_categories = ['D', 'E', 'F', 'G', 'H', 'I', 'J']
-            clarity_categories = ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF']
+            columns = ['LIMIT_BAL', 'SEX', 'EDUCATION', 'MARRIAGE', 'AGE', 'total_pay_amt', 'total_pay', 'total_bill_amt']
 
             logging.info('Pipeline Initiated')
 
-            ## Numerical Pipeline
-            num_pipeline = Pipeline(
+            pipe = Pipeline(
                 steps=[
-                    ('imputer', SimpleImputer(strategy='median')),
+                    ('imputer', SimpleImputer(missing_values=np.nan, strategy='mean')),
                     ('scaler', StandardScaler())
-
-                ]
-
-            )
-
-            # Categorigal Pipeline
-            cat_pipeline = Pipeline(
-                steps=[
-                    ('imputer', SimpleImputer(strategy='most_frequent')),
-                    ('ordinalencoder',
-                     OrdinalEncoder(categories=[cut_categories, color_categories, clarity_categories])),
-                    ('scaler', StandardScaler())
-                ]
-
-            )
-
+                ])
             preprocessor = ColumnTransformer([
-                ('num_pipeline', num_pipeline, numerical_cols),
-                ('cat_pipeline', cat_pipeline, categorical_cols)
+                ('pipe', pipe, columns)
             ])
 
             return preprocessor
@@ -85,8 +62,18 @@ class DataTransformation:
 
             preprocessing_obj = self.get_data_transformation_object()
 
-            target_column_name = 'price'
-            drop_columns = [target_column_name, 'id']
+            #training data preprocessing
+            train_df['total_pay_amt'] = train_df['PAY_AMT1']+train_df['PAY_AMT2']+train_df['PAY_AMT3']+train_df['PAY_AMT4']+train_df['PAY_AMT5']+train_df['PAY_AMT6']
+            train_df['total_pay'] = train_df['PAY_0'] + train_df['PAY_2'] + train_df['PAY_3'] + train_df['PAY_4'] + train_df['PAY_5'] + train_df['PAY_6']
+            train_df['total_bill_amt'] = train_df['BILL_AMT1'] + train_df['BILL_AMT2'] + train_df['BILL_AMT3'] + train_df['BILL_AMT4'] + train_df['BILL_AMT5'] + train_df['BILL_AMT6']
+
+            test_df['total_pay_amt'] = test_df['PAY_AMT1'] + test_df['PAY_AMT2'] + test_df['PAY_AMT3'] + test_df['PAY_AMT4'] + test_df['PAY_AMT5'] + test_df['PAY_AMT6']
+            test_df['total_pay'] = test_df['PAY_0'] + test_df['PAY_2'] + test_df['PAY_3'] + test_df['PAY_4'] + test_df['PAY_5'] + test_df['PAY_6']
+            test_df['total_bill_amt'] = test_df['BILL_AMT1'] + test_df['BILL_AMT2'] + test_df['BILL_AMT3'] + test_df['BILL_AMT4'] + test_df['BILL_AMT5'] + test_df['BILL_AMT6']
+
+
+            target_column_name = 'default.payment.next.month'
+            drop_columns = [target_column_name, 'ID','PAY_AMT1','PAY_AMT2','PAY_AMT3','PAY_AMT4','PAY_AMT5','PAY_AMT6','PAY_0','PAY_2','PAY_3','PAY_4','PAY_5','PAY_6','BILL_AMT1','BILL_AMT2','BILL_AMT3','BILL_AMT4','BILL_AMT5','BILL_AMT6']
 
             input_feature_train_df = train_df.drop(columns=drop_columns, axis=1)
             target_feature_train_df = train_df[target_column_name]

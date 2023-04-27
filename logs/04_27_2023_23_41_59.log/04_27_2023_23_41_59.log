@@ -1,0 +1,27 @@
+[ 2023-04-27 23:42:00,870 ] 28 root - INFO - Data Ingestion methods Starts
+[ 2023-04-27 23:42:00,948 ] 31 root - INFO - Dataset read as pandas Dataframe
+[ 2023-04-27 23:42:01,246 ] 35 root - INFO - Train test split
+[ 2023-04-27 23:42:01,547 ] 41 root - INFO - Ingestion of Data is completed
+[ 2023-04-27 23:42:01,626 ] 57 root - INFO - Read train and test data completed
+[ 2023-04-27 23:42:01,633 ] 58 root - INFO - Train Dataframe Head : 
+      ID  LIMIT_BAL  SEX  EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2  PAY_3  PAY_4  PAY_5  PAY_6  BILL_AMT1  BILL_AMT2  BILL_AMT3  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2  PAY_AMT3  PAY_AMT4  PAY_AMT5  PAY_AMT6  default.payment.next.month
+0  28466   240000.0    2          1         1   40     -2     -2     -2     -2     -2     -2        0.0        0.0        0.0        0.0        0.0        0.0       0.0       0.0       0.0       0.0       0.0       0.0                           1
+1  27623    50000.0    2          1         2   23     -1     -1     -1     -1     -1     -1     3430.0     2478.0     2299.0     4800.0     9810.0      660.0    2548.0    2321.0    4800.0    9810.0     660.0    2980.0                           0
+2  28377    50000.0    2          2         1   36      2      2      2      2      0      0    46203.0    45159.0    49125.0    47956.0    43578.0    35126.0       0.0    4700.0       0.0    2004.0    3500.0       0.0                           0
+3  10918   200000.0    2          3         1   54      6      5      4      3      2      2   110185.0   107665.0   104686.0   102549.0   101400.0        0.0       0.0       0.0       0.0       0.0       0.0       0.0                           0
+4  27235   240000.0    1          1         1   35     -1     -1     -1      0     -1     -1     2024.0     2007.0    21790.0    17102.0    13367.0    22659.0    2017.0   21817.0    1120.0   13434.0   22772.0   22820.0                           0
+[ 2023-04-27 23:42:01,639 ] 59 root - INFO - Test Dataframe Head  : 
+      ID  LIMIT_BAL  SEX  EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2  PAY_3  PAY_4  PAY_5  PAY_6  BILL_AMT1  BILL_AMT2  BILL_AMT3  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2  PAY_AMT3  PAY_AMT4  PAY_AMT5  PAY_AMT6  default.payment.next.month
+0   2309    30000.0    1          2         2   25      0      0      0      0      0      0     8864.0    10062.0    11581.0    12580.0    13716.0    14828.0    1500.0    2000.0    1500.0    1500.0    1500.0    2000.0                           0
+1  22405   150000.0    2          1         2   26      0      0      0      0      0      0   136736.0   125651.0   116684.0   101581.0    77741.0    77264.0    4486.0    4235.0    3161.0    2647.0    2669.0    2669.0                           0
+2  23398    70000.0    2          3         1   32      0      0      0      0      0      0    70122.0    69080.0    68530.0    69753.0    70111.0    70212.0    2431.0    3112.0    3000.0    2438.0    2500.0    2554.0                           0
+3  25059   130000.0    1          3         2   49      0      0      0      0      0     -1    20678.0    18956.0    16172.0    16898.0    11236.0     6944.0    1610.0    1808.0    7014.0      27.0    7011.0    4408.0                           0
+4   2665    50000.0    2          2         2   36      0      0      0      0      0      2    94228.0    47635.0    42361.0    19574.0    20295.0    19439.0    2000.0    1500.0    1000.0    1800.0       0.0    1000.0                           1
+[ 2023-04-27 23:42:01,639 ] 61 root - INFO - Obtaining preprocessing object
+[ 2023-04-27 23:42:01,639 ] 29 root - INFO - Data Transformation initiated
+[ 2023-04-27 23:42:01,639 ] 32 root - INFO - Pipeline Initiated
+[ 2023-04-27 23:42:01,660 ] 88 root - INFO - Applying preprocessing object on training and testing datasets.
+[ 2023-04-27 23:42:01,661 ] 99 root - INFO - Preprocessor pickle file saved
+[ 2023-04-27 23:42:01,662 ] 27 root - INFO - Splitting Dependent and Independent variables from train and test data
+[ 2023-04-27 23:42:02,074 ] 43 root - INFO - Model Report : {'LogisticRegression': 0.7966666666666666, 'LogisticregressionCV': 0.7965555555555556}
+[ 2023-04-27 23:42:02,074 ] 56 root - INFO - Best Model Found , Model Name : LogisticRegression , R2 Score : 0.7966666666666666

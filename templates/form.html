@@ -1,0 +1,50 @@
+<html>
+<body>
+<form action="{{url_for('predict_datapoint')}}" method="POST">
+    <div class="form-group">
+        <label for="LIMIT_BAL">LIMIT_BAL:</label>
+        <input type="text" id="LIMIT_BAL" name="LIMIT_BAL" placeholder="Enter LIMIT_BAL value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="SEX">SEX:</label>
+        <input type="text" id="SEX" name="SEX" placeholder="Enter SEX value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="EDUCATION">EDUCATION:</label>
+        <input type="text" id="EDUCATION" name="EDUCATION" placeholder="Enter EDUCATION value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="MARRIAGE">MARRIAGE:</label>
+        <input type="text" id="MARRIAGE" name="MARRIAGE" placeholder="Enter MARRIAGE value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="AGE">AGE:</label>
+        <input type="text" id="AGE" name="AGE" placeholder="Enter AGE value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="total_pay_amt">total_pay_amt:</label>
+        <input type="text" id="total_pay_amt" name="total_pay_amt" placeholder="Enter total_pay_amt value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="total_pay">total_pay:</label>
+        <input type="text" id="total_pay" name="total_pay" placeholder="Enter total_pay value (float)">
+    </div>
+
+    <div class="form-group">
+        <label for="total_bill_amt">total_bill_amt:</label>
+        <input type="text" id="total_bill_amt" name="total_bill_amt" placeholder="Enter total_bill_amt value (float)">
+    </div>
+
+
+
+<div style="clear:both;"></div>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
